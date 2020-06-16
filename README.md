@@ -1,5 +1,9 @@
 # che-cli
 
+Allows to open file in the IDE from a terminal
+
+![screenshot](../assets/che-cli.gif)
+
 ## Try out:
 
 1. Open a terminal in Eclipse Che
