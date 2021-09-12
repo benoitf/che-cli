@@ -17,6 +17,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 	"github.com/tidwall/gjson"
@@ -34,7 +35,11 @@ func NewOpenCmd() *cobra.Command {
 				return errors.New("The filename argument is required")
 			}
 
-			filename := args[0]
+			filename, err := filepath.Abs(args[0])
+
+			if err != nil {
+				return errors.New("File " + args[0] + " is wrong\n")
+			}
 
 			if _, err := os.Stat(filename); os.IsNotExist(err) {
 				return errors.New("File " + filename + " does not exist\n")
